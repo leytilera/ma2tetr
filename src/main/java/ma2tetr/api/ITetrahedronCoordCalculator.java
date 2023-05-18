@@ -1,5 +1,8 @@
 package ma2tetr.api;
 
+import java.util.List;
+
+import ma2tetr.model.IterationState;
 import ma2tetr.model.Tetrahedron;
 
 public interface ITetrahedronCoordCalculator {
@@ -11,5 +14,7 @@ public interface ITetrahedronCoordCalculator {
     void calculate();
 
     Tetrahedron getTetrahedron();
+
+    List<IterationState> getStateLog();
     
 }

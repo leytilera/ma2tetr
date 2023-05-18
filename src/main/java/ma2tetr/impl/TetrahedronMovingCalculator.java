@@ -1,12 +1,15 @@
 package ma2tetr.impl;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import ma2tetr.api.ITetrahedronCoordCalculator;
 import ma2tetr.invariant.RadiusInvariant;
 import ma2tetr.invariant.TetrahedronInvariant;
 import ma2tetr.model.Coords3D;
+import ma2tetr.model.IterationState;
 import ma2tetr.model.Point3D;
 import ma2tetr.model.Tetrahedron;
 import ma2tetr.model.Vector3D;
@@ -15,6 +18,7 @@ public class TetrahedronMovingCalculator implements ITetrahedronCoordCalculator 
 
     private double radius = 1.0;
     private Tetrahedron tetrahedron = null;
+    private List<IterationState> log = new ArrayList<>();
 
     @Override
     public void setRadius(double radius) {
@@ -32,6 +36,7 @@ public class TetrahedronMovingCalculator implements ITetrahedronCoordCalculator 
         points.add(triangle.getP1());
         points.add(triangle.getP2());
         points.add(triangle.getP3());
+        StateLogger logger = new StateLogger(center, points, log);
         RadiusInvariant rinv = new RadiusInvariant(points, center, radius);
         TetrahedronInvariant tinv = new TetrahedronInvariant(top, triangle.getP1(), triangle.getP2(), triangle.getP3());
         double scaling = radius / 10;
@@ -45,6 +50,7 @@ public class TetrahedronMovingCalculator implements ITetrahedronCoordCalculator 
                 triangle.move(-scaling);
                 scaling = scaling / 10;
             }
+            logger.logState();
         }
         tetrahedron = new Tetrahedron(top, triangle.getP1(), triangle.getP2(), triangle.getP3());
     }
@@ -57,6 +63,11 @@ public class TetrahedronMovingCalculator implements ITetrahedronCoordCalculator 
     @Override
     public double getRadius() {
         return this.radius;
+    }
+
+    @Override
+    public List<IterationState> getStateLog() {
+        return log;
     }
     
 }

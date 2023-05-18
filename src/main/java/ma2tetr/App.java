@@ -35,5 +35,6 @@ public class App {
         System.out.println(t.getP1());
         System.out.println(t.getP2());
         System.out.println(t.getP3());
+        System.out.println("Iterations needed: " + calc.getStateLog().size());
     }
 }
