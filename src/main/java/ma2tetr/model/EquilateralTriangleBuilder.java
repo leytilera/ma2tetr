@@ -9,7 +9,7 @@ public class EquilateralTriangleBuilder {
     private Coords3D center;
     private double radius;
 
-    public EquilateralTriangleBuilder(Coords3D center, double radius, double rotation) {
+    public EquilateralTriangleBuilder(Coords3D center, double radius) {
         this.center = center;
         this.radius = radius;
     }

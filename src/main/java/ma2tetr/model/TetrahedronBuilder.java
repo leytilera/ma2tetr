@@ -15,7 +15,7 @@ public class TetrahedronBuilder {
     }
 
     public void build() {
-        EquilateralTriangleBuilder trib = new EquilateralTriangleBuilder(top, 1, 0);
+        EquilateralTriangleBuilder trib = new EquilateralTriangleBuilder(top, 1);
         trib.build();
         p1 = trib.getP1();
         p2 = trib.getP2();

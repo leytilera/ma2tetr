@@ -24,7 +24,7 @@ public class TriangleBaseMover {
     public TriangleBaseMover(double radius) {
         this.center = new Point3D(0, 0, 0);
         this.radius = radius;
-        EquilateralTriangleBuilder builder = new EquilateralTriangleBuilder(center, 1, 0);
+        EquilateralTriangleBuilder builder = new EquilateralTriangleBuilder(center, 1);
         builder.build();
         p1 = builder.getP1();
         p2 = builder.getP2();
