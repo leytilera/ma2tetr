@@ -1,0 +1,39 @@
+package ma2tetr;
+
+import ma2tetr.api.ITetrahedronCoordCalculator;
+import ma2tetr.impl.TetrahedronMovingCalculator;
+import ma2tetr.impl.TetrahedronScalingCalculator;
+import ma2tetr.model.Tetrahedron;
+
+public class App {
+
+    public static void main(String[] args) {
+        double radius;
+        if (args.length != 2) {
+            throw new RuntimeException("Needs 2 arguments");
+        }
+        try {
+            radius = Double.parseDouble(args[1]);
+        } catch (NumberFormatException e) {
+            throw new RuntimeException("Invalid radius: " + args[1]);
+        }
+        ITetrahedronCoordCalculator calc;
+        switch(args[0]) {
+            case "scaling":
+                calc = new TetrahedronScalingCalculator();
+                break;
+            case "moving":
+                calc = new TetrahedronMovingCalculator();
+                break;
+            default:
+                throw new RuntimeException("Invalid calculator: " + args[0]);
+        }
+        calc.setRadius(radius);
+        calc.calculate();
+        Tetrahedron t = calc.getTetrahedron();
+        System.out.println(t.getTop());
+        System.out.println(t.getP1());
+        System.out.println(t.getP2());
+        System.out.println(t.getP3());
+    }
+}
