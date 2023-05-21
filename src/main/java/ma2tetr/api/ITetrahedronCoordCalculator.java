@@ -16,5 +16,7 @@ public interface ITetrahedronCoordCalculator {
     Tetrahedron getTetrahedron();
 
     List<IterationState> getStateLog();
+
+    void setAccuracy(double accuracy);
     
 }

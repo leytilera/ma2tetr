@@ -14,9 +14,9 @@ public class Tetrahedron {
     private Vector3D v2;
     private Vector3D v3;
 
-    public Tetrahedron(double x, double y, double z) {
-        top = new Point3D(x, y, z);
-        TetrahedronBuilder builder = new TetrahedronBuilder(top);
+    public Tetrahedron(Point3D top, double accuracy) {
+        this.top = top;
+        TetrahedronBuilder builder = new TetrahedronBuilder(top, accuracy);
         builder.build();
         p1 = builder.getP1();
         p2 = builder.getP2();

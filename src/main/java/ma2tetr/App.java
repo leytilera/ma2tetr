@@ -9,16 +9,12 @@ public class App {
 
     public static void main(String[] args) {
         double radius;
-        if (args.length != 2) {
-            System.out.println("Required arguments: <calculator> <radius>");
+        if (args.length != 2 && args.length != 3) {
+            System.out.println("Arguments: <calculator> <radius> [<accuracy>]");
             System.out.println(" - calculator: either 'scaling' or 'moving'");
             System.out.println(" - radius: the sphere radius as a number");
+            System.out.println(" - accuracy: the accuracy for double comparison");
             return;
-        }
-        try {
-            radius = Double.parseDouble(args[1]);
-        } catch (NumberFormatException e) {
-            throw new RuntimeException("Invalid radius: " + args[1]);
         }
         ITetrahedronCoordCalculator calc;
         switch(args[0]) {
@@ -30,6 +26,14 @@ public class App {
                 break;
             default:
                 throw new RuntimeException("Invalid calculator: " + args[0]);
+        }
+        try {
+            radius = Double.parseDouble(args[1]);
+            if (args.length == 3) {
+                calc.setAccuracy(Double.parseDouble(args[2]));
+            }
+        } catch (NumberFormatException e) {
+            throw new RuntimeException("Invalid radius: " + args[1]);
         }
         calc.setRadius(radius);
         calc.calculate();

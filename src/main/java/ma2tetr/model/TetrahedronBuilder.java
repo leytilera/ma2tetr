@@ -10,8 +10,11 @@ public class TetrahedronBuilder {
 
     private Point3D top;
 
-    public TetrahedronBuilder(Point3D top) {
+    private double accuracy;
+
+    public TetrahedronBuilder(Point3D top, double accuracy) {
         this.top = top;
+        this.accuracy = accuracy;
     }
 
     public void build() {
@@ -21,6 +24,7 @@ public class TetrahedronBuilder {
         p2 = trib.getP2();
         p3 = trib.getP3();
         EquilateralTriangleInvariant inv = new EquilateralTriangleInvariant(p1, p2, p3);
+        inv.setAccuracy(accuracy);
         if (!inv.isFulfilled()) {
             throw new RuntimeException("Unexpected error");
         }

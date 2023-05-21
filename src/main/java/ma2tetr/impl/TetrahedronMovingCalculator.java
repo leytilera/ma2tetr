@@ -19,6 +19,7 @@ public class TetrahedronMovingCalculator implements ITetrahedronCoordCalculator 
     private double radius = 1.0;
     private Tetrahedron tetrahedron = null;
     private List<IterationState> log = new ArrayList<>();
+    private double accuracy = 0.00000000001;
 
     @Override
     public void setRadius(double radius) {
@@ -38,13 +39,15 @@ public class TetrahedronMovingCalculator implements ITetrahedronCoordCalculator 
         points.add(triangle.getP3());
         StateLogger logger = new StateLogger(center, points, log);
         RadiusInvariant rinv = new RadiusInvariant(points, center, radius);
+        rinv.setAccuracy(accuracy);
         TetrahedronInvariant tinv = new TetrahedronInvariant(top, triangle.getP1(), triangle.getP2(), triangle.getP3());
+        tinv.setAccuracy(accuracy);
         double scaling = radius / 10;
         while(true) {
             triangle.move(scaling);
             if (!rinv.isFulfilled()) {
                 throw new RuntimeException("Unexpected error");
-            } else if (tinv.isFulfilled()) {
+            } else if (tinv.isFulfilled() || scaling <= accuracy) {
                 break;
             } else if (tinv.firstDifference() < 0) {
                 triangle.move(-scaling);
@@ -68,6 +71,11 @@ public class TetrahedronMovingCalculator implements ITetrahedronCoordCalculator 
     @Override
     public List<IterationState> getStateLog() {
         return log;
+    }
+
+    @Override
+    public void setAccuracy(double accuracy) {
+        this.accuracy = accuracy;
     }
     
 }
