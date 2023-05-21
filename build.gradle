@@ -14,3 +14,10 @@ application {
     mainClass = 'ma2tetr.App'
 }
 
+jar {
+    manifest {
+        attributes(
+            "Main-Class": "ma2tetr.App"
+        )
+    }
+}

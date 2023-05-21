@@ -10,7 +10,10 @@ public class App {
     public static void main(String[] args) {
         double radius;
         if (args.length != 2) {
-            throw new RuntimeException("Needs 2 arguments");
+            System.out.println("Required arguments: <calculator> <radius>");
+            System.out.println(" - calculator: either 'scaling' or 'moving'");
+            System.out.println(" - radius: the sphere radius as a number");
+            return;
         }
         try {
             radius = Double.parseDouble(args[1]);
