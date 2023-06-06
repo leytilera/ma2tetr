@@ -1,16 +1,16 @@
-package ma2tetr.invariant;
+package ma2tetr.condition;
 
 import java.util.Set;
 
 import ma2tetr.model.Coords3D;
 
-public class RadiusInvariant extends AbstractInvariant {
+public class RadiusCondition extends AbstractCondition {
 
     private Set<Coords3D> points;
     private Coords3D center;
     private double radius;
 
-    public RadiusInvariant(Set<Coords3D> points, Coords3D center, double radius) {
+    public RadiusCondition(Set<Coords3D> points, Coords3D center, double radius) {
         this.points = points;
         this.center = center;
         this.radius = radius;

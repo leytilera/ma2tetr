@@ -1,6 +1,6 @@
-package ma2tetr.invariant;
+package ma2tetr.condition;
 
-public abstract class AbstractInvariant {
+public abstract class AbstractCondition {
     
     private double accuracy = 0.00000000001;
 

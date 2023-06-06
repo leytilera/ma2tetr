@@ -1,8 +1,8 @@
-package ma2tetr.invariant;
+package ma2tetr.condition;
 
 import ma2tetr.model.Coords3D;
 
-public class EquilateralTriangleInvariant extends AbstractInvariant {
+public class EquilateralTriangleCondition extends AbstractCondition {
     
     private Coords3D p1;
     private Coords3D p2;
@@ -12,7 +12,7 @@ public class EquilateralTriangleInvariant extends AbstractInvariant {
     private double len23;
     private double len13;
 
-    public EquilateralTriangleInvariant(Coords3D p1, Coords3D p2, Coords3D p3) {
+    public EquilateralTriangleCondition(Coords3D p1, Coords3D p2, Coords3D p3) {
         this.p1 = p1;
         this.p2 = p2;
         this.p3 = p3;

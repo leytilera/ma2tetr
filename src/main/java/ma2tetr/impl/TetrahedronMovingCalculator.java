@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Set;
 
 import ma2tetr.api.ITetrahedronCoordCalculator;
-import ma2tetr.invariant.RadiusInvariant;
-import ma2tetr.invariant.TetrahedronInvariant;
+import ma2tetr.condition.RadiusCondition;
+import ma2tetr.condition.TetrahedronCondition;
 import ma2tetr.model.Coords3D;
 import ma2tetr.model.IterationState;
 import ma2tetr.model.Point3D;
@@ -38,9 +38,9 @@ public class TetrahedronMovingCalculator implements ITetrahedronCoordCalculator 
         points.add(triangle.getP2());
         points.add(triangle.getP3());
         StateLogger logger = new StateLogger(center, points, log);
-        RadiusInvariant rinv = new RadiusInvariant(points, center, radius);
+        RadiusCondition rinv = new RadiusCondition(points, center, radius);
         rinv.setAccuracy(accuracy);
-        TetrahedronInvariant tinv = new TetrahedronInvariant(top, triangle.getP1(), triangle.getP2(), triangle.getP3());
+        TetrahedronCondition tinv = new TetrahedronCondition(top, triangle.getP1(), triangle.getP2(), triangle.getP3());
         tinv.setAccuracy(accuracy);
         double scaling = radius / 10;
         while(true) {

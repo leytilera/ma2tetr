@@ -1,6 +1,6 @@
 package ma2tetr.model;
 
-import ma2tetr.invariant.EquilateralTriangleInvariant;
+import ma2tetr.condition.EquilateralTriangleCondition;
 
 public class TetrahedronBuilder {
 
@@ -23,7 +23,7 @@ public class TetrahedronBuilder {
         p1 = trib.getP1();
         p2 = trib.getP2();
         p3 = trib.getP3();
-        EquilateralTriangleInvariant inv = new EquilateralTriangleInvariant(p1, p2, p3);
+        EquilateralTriangleCondition inv = new EquilateralTriangleCondition(p1, p2, p3);
         inv.setAccuracy(accuracy);
         if (!inv.isFulfilled()) {
             throw new RuntimeException("Unexpected error");

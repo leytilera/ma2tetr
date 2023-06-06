@@ -1,9 +1,9 @@
-package ma2tetr.invariant;
+package ma2tetr.condition;
 
 import ma2tetr.model.Coords3D;
 import ma2tetr.model.Tetrahedron;
 
-public class TetrahedronInvariant extends AbstractInvariant {
+public class TetrahedronCondition extends AbstractCondition {
 
     private Coords3D top;
     private Coords3D p1;
@@ -15,17 +15,17 @@ public class TetrahedronInvariant extends AbstractInvariant {
     private double len3;
     private double lenbase;
 
-    private EquilateralTriangleInvariant base;
+    private EquilateralTriangleCondition base;
 
-    public TetrahedronInvariant(Coords3D top, Coords3D p1, Coords3D p2, Coords3D p3) {
+    public TetrahedronCondition(Coords3D top, Coords3D p1, Coords3D p2, Coords3D p3) {
         this.top = top;
         this.p1 = p1;
         this.p2 = p2;
         this.p3 = p3;
-        this.base = new EquilateralTriangleInvariant(p1, p2, p3);
+        this.base = new EquilateralTriangleCondition(p1, p2, p3);
     }
 
-    public TetrahedronInvariant(Tetrahedron t) {
+    public TetrahedronCondition(Tetrahedron t) {
         this(t.getTop(), t.getP1(), t.getP2(), t.getP3());
     }
 

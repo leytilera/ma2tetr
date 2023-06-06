@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ma2tetr.api.ITetrahedronCoordCalculator;
-import ma2tetr.invariant.RadiusInvariant;
-import ma2tetr.invariant.TetrahedronInvariant;
+import ma2tetr.condition.RadiusCondition;
+import ma2tetr.condition.TetrahedronCondition;
 import ma2tetr.model.Coords3D;
 import ma2tetr.model.IterationState;
 import ma2tetr.model.Point3D;
@@ -29,9 +29,9 @@ public class TetrahedronScalingCalculator implements ITetrahedronCoordCalculator
         Coords3D center = new Vector3D(0, 0, 0);
         tetrahedron = new Tetrahedron(new Point3D(0, radius, 0), accuracy);
         StateLogger logger = new StateLogger(center, tetrahedron.getPointsSet(), log);
-        TetrahedronInvariant tinv = new TetrahedronInvariant(tetrahedron);
+        TetrahedronCondition tinv = new TetrahedronCondition(tetrahedron);
         tinv.setAccuracy(accuracy);
-        RadiusInvariant rinv = new RadiusInvariant(tetrahedron.getPointsSet(), center, radius);
+        RadiusCondition rinv = new RadiusCondition(tetrahedron.getPointsSet(), center, radius);
         rinv.setAccuracy(accuracy);
         double scaling = radius / 10;
         while(true) {
